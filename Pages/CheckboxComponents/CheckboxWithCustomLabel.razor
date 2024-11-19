@@ -1,0 +1,20 @@
+﻿
+<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Checkbox With Custom Label - I</h3>
+
+    <div class="flex items-start gap-2">
+        <Checkbox @bind-IsChecked="_isChecked" Id="cb-7" />
+
+        <div class="grid grow gap-2">
+            <Label For="cb-7">Small</Label>
+            <p class="text-xs text-slate-500">
+                You can use this card with a label and a description.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private bool _isChecked = true;
+}

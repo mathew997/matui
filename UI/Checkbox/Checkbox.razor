@@ -1,0 +1,52 @@
+﻿
+<input type="checkbox"
+       class="ring-offset-2 peer aspect-square size-4 cursor-pointer appearance-none rounded-[3px] border border-[#d8d8d8] transition-colors duration-300 ease-in-out data-[state=checked]:after:content-[''] after:absolute after:left-[5px] after:top-[1px] after:w-[5px] after:h-2.5 after:rotate-45 after:border-l-0 after:border-t-0 after:border-r-2 after:content-none after:border-b-2 focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:after:border-current @(Visible ? "relative" : "sr-only") @Class"
+       data-state="@(IsChecked ? "checked" : "unchecked")"
+       id="@Id"
+       disabled="@Disabled"
+       @bind="IsChecked" />
+
+
+@code {
+    /// <summary>
+    /// Gets or sets the unique identifier for the checkbox.
+    /// </summary>
+    [Parameter] public string? Id { get; set; }
+
+    private bool _isChecked;
+    [Parameter]
+    public bool IsChecked
+    {
+        get => _isChecked;
+        set
+        {
+            if (_isChecked != value)
+            {
+                _isChecked = value;
+                IsCheckedChanged.InvokeAsync(value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the checkbox is disabled.
+    /// </summary>
+    [Parameter] public bool Disabled { get; set; }
+
+    /// <summary>
+    /// Determines whether the checkbox is visible.
+    /// When <c>true</c>, the checkbox is visible. When <c>false</c>, it is visually hidden but still accessible.
+    /// </summary>
+    [Parameter] public bool Visible { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets additional CSS classes to apply to the checkbox element.
+    /// This allows for custom styling beyond the default styles provided in the component.
+    /// </summary>
+    [Parameter] public string? Class { get; set; } = "ring-[#160303] data-[state=checked]:border-[#160303] data-[state=checked]:bg-[#160303] data-[state=checked]:text-white";
+
+    /// <summary>
+    /// An event callback triggered when the checkbox's checked state changes.
+    /// </summary>
+    [Parameter] public EventCallback<bool> IsCheckedChanged { get; set; }
+}

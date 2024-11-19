@@ -1,0 +1,41 @@
+﻿
+<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Radio With Custom Label - I</h3>
+
+    <RadioGroup @bind-Value="selectedOption"
+                DefaultValue="small"
+                Name="rbg-4"
+                Class="grid gap-3">
+
+
+        <div class="flex items-start gap-2">
+            <RadioGroupItem Value="small"
+                            Id="small" />
+
+            <div class="grid grow gap-2">
+                <Label For="small">Small</Label>
+                <p class="text-xs text-slate-500">
+                    You can use this card with a label and a description.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-2">
+            <RadioGroupItem Value="large"
+                            Id="large" />
+
+            <div class="grid grow gap-2">
+                <Label For="large">Large</Label>
+                <p class="text-xs text-slate-500">
+                    You can use this card with a label and a description.
+                </p>
+            </div>
+        </div>
+
+
+    </RadioGroup>
+</div>
+
+@code {
+    private string selectedOption;
+}

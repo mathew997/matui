@@ -1,0 +1,27 @@
+﻿
+    <RadioButtonDefault Options="_inputs" />
+
+    <RadioButtonCustomized Options="_inputs" />
+
+    <RadioButtonDisabled Options="_inputs" />
+
+    <RadioWithCustomLabel />
+
+    <RadioWithCustomLabel2 />
+
+    <ColorPicker />
+
+    <RadioWithIcon />
+@code {
+    private List<Input>? _inputs;
+    protected override void OnInitialized()
+    {
+        _inputs = new List<Input>
+        {
+            new Input { Id = "option1", Value = "Option 1", Disabled = false },
+            new Input { Id = "option2", Value = "Option 2", Disabled = true },
+            new Input { Id = "option3", Value = "Option 3", Disabled = false },
+            new Input { Id = "option4", Value = "Option 4", Disabled = true },
+        };
+    }
+}

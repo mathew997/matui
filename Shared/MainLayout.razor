@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    @* <div class="sidebar"> *@
+    @*     <NavMenu /> *@
+    @* </div> *@
+
+    <main>
+        <div class="mt-6 container mx-auto flex items-center justify-between">
+            <NavLink href="/" class="size-8 overflow-hidden rounded-full">
+                <img src="/favicon.jpg" />
+            </NavLink>
+
+            <NavLink href="/" class="size-8 bg-black text-white flex cursor-pointer items-center justify-center rounded-full">
+                <GithubIcon />
+            </NavLink>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+
+        <h6 class="text-gray-500 my-7 text-center">Made by Mathew</h6>
+    </main>
+</div>

@@ -1,0 +1,27 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Radio Disabled</h3>
+
+    <RadioGroup @bind-Value="selectedOption"
+                DefaultValue="option2"
+                Name="rbg-3"
+                Class="grid gap-3">
+        @if (Options?.Count > 0)
+        {
+            @foreach (var input in Options)
+            {
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem Value="@input?.Id"
+                                    Id="@input?.Id"
+                                    Disabled="true" />
+                    <Label For="@input?.Id">@input?.Value</Label>
+                </div>
+            }
+        }
+
+    </RadioGroup>
+</div>
+
+@code {
+    [Parameter] public List<Input>? Options { get; set; }
+    private string selectedOption;
+}

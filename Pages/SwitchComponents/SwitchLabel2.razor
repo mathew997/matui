@@ -1,0 +1,31 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Switch With Custom Label - II</h3>
+
+    <div class="grid gap-3">
+        <div class="relative flex h-fit flex-row-reverse items-start gap-2 rounded-md border p-4 has-[[data-state=checked]]:border-blue-400 has-[[data-state=checked]]:bg-blue-50">
+            <Switch Size="SwitchSize.Small" IsActive="true" Class="data-[state=checked]:bg-blue-600" />
+
+            <div class="grid grow gap-2">
+                <Label>Focus mode</Label>
+                <p class="text-xs text-slate-500">
+                    You can use this card with a label and a description.
+                </p>
+            </div>
+        </div>
+
+        <div class="relative flex h-fit flex-row-reverse items-start gap-2 rounded-md border p-4 has-[[data-state=checked]]:border-blue-400 has-[[data-state=checked]]:bg-blue-50">
+            <Switch Size="SwitchSize.Small" IsActive="false" Class="data-[state=checked]:bg-blue-600" />
+
+            <div class="grid grow gap-2">
+                <Label>Undo send</Label>
+                <p class="text-xs text-slate-500">
+                    You can use this card with a label and a description.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

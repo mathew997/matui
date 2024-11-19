@@ -1,0 +1,70 @@
+﻿
+<div class="@Class" role="radiogroup">
+    <CascadingValue Value="this" IsFixed="false">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    private string? _value;
+
+    /// <summary>
+    /// Gets or sets the child content to be rendered inside the radio group.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the name attribute for the radio group, used to group radio buttons.
+    /// </summary>
+    [Parameter] public string? Name { get; set; } = Guid.NewGuid().ToString();
+
+    /// <summary>
+    /// Gets or sets the currently selected value within the radio group.
+    /// </summary>
+    [Parameter]
+    public string? Value
+    {
+        get => _value;
+        set
+        {
+            if (_value != value)
+            {
+                _value = value;
+                ValueChanged.InvokeAsync(value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Event callback triggered when the selected value changes.
+    /// </summary>
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+
+    /// <summary>
+    /// Gets or sets the default value to be selected when the component is initialized.
+    /// </summary>
+    [Parameter] public string? DefaultValue { get; set; }
+
+    /// <summary>
+    /// Gets or sets the custom CSS class for the radio group container.
+    /// </summary>
+    [Parameter] public string? Class { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(Value) && !string.IsNullOrEmpty(DefaultValue))
+        {
+            await SelectValue(DefaultValue);
+        }
+    }
+
+    /// <summary>
+    /// Updates the selected value and triggers the ValueChanged event callback.
+    /// </summary>
+    /// <param name="value">The new value to select.</param>
+    public async Task SelectValue(string value)
+    {
+        Value = value;
+        await ValueChanged.InvokeAsync(value);
+    }
+}

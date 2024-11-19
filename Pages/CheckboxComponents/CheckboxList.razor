@@ -1,0 +1,34 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Checkbox list</h3>
+
+
+    @if (_inputs?.Count > 0)
+    {
+        <div class="grid h-fit gap-3">
+            @foreach (var input in _inputs)
+            {
+                <div class="flex items-center gap-2">
+                    <Checkbox Id="@input.Id"
+                              IsChecked="true"
+                              Class="ring-orange-600 data-[state=checked]:border-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:text-white" />
+                    <Label For="@input?.Id">@input?.Value</Label>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public List<Input>? _inputs { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _inputs = new List<Input>
+        {
+            new Input { Id = "chk01", Value = "Option 1", Disabled = false },
+            new Input { Id = "chk02", Value = "Option 2", Disabled = true },
+            new Input { Id = "chk03", Value = "Option 3", Disabled = false },
+            new Input { Id = "chk04", Value = "Option 4", Disabled = true },
+        };
+    }
+}

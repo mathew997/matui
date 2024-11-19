@@ -1,0 +1,55 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Days of the week</h3>
+
+    <div class="flex items-center gap-2.5">
+        @foreach (var day in _weekdays)
+        {
+            <label title="@day?.Name" for="@day?.Id" class="ring-offset-2 flex size-8 cursor-pointer items-center justify-center rounded-full bg-[#F2F2F2] focus:outline-none has-[[data-state=checked]]:bg-[#1E1F21] has-[[data-state=checked]]:text-white has-[:focus-visible]:ring-2">
+                <Checkbox Id="@day?.Id"
+                          IsChecked="_selectedDays.Contains(day?.Id)"
+                          IsCheckedChanged="@(checkedValue => ToggleDay(checkedValue, day?.Id))"
+                          Visible="false" />
+                <span class="text-xs">@day?.Name[0]</span>
+                <span class="sr-only">@day?.Name</span>
+            </label>
+        }
+    </div>
+</div>
+
+@code {
+    private List<Weekday>? _weekdays;
+    private List<string> _selectedDays = new List<string>{"WD4","WD5","WD6"};
+
+    protected override void OnInitialized()
+    {
+        _weekdays = new List<Weekday>
+        {
+            new Weekday { Id = "WD1", Name = "Sunday", Index = 0 },
+            new Weekday { Id = "WD2", Name = "Monday", Index = 1 },
+            new Weekday { Id = "WD3", Name = "Tuesday", Index = 2 },
+            new Weekday { Id = "WD4", Name = "Wednesday", Index = 3 },
+            new Weekday { Id = "WD5", Name = "Thursday", Index = 4 },
+            new Weekday { Id = "WD6", Name = "Friday", Index = 5 },
+            new Weekday { Id = "WD7", Name = "Saturday", Index = 6 }
+        };
+    }
+
+    public class Weekday
+    {
+        public int Index { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+    }
+
+    private void ToggleDay(bool isChecked, string? id)
+    {
+        if (isChecked && !_selectedDays.Contains(id))
+        {
+            _selectedDays.Add(id);
+        }
+        else if (!isChecked && _selectedDays.Contains(id))
+        {
+            _selectedDays.Remove(id);
+        }
+    }
+}

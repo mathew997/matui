@@ -1,0 +1,12 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Disabled</h3>
+
+    <div class="flex items-center gap-2.5">
+        <Checkbox @bind-IsChecked="_isChecked" Id="cb-3" Disabled />
+        <Label For="cb-3">Disabled checkbox</Label>
+    </div>
+</div>
+
+@code {
+    private bool _isChecked = true;
+}

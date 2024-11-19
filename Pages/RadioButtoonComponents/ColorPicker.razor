@@ -1,0 +1,75 @@
+﻿
+<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Color picker</h3>
+
+    <RadioGroup @bind-Value="selectedOption"
+                DefaultValue="Orange"
+                Name="rbg-6"
+                Class="grid gap-3">
+        @if (_colors?.Count > 0)
+        {
+            <div class="grid-cols-8 grid h-fit w-fit gap-2">
+                @foreach (var color in _colors)
+                {
+                    <label for="@color?.Id" class="ring-offset-2 aspect-square size-7 rounded-full border-[.5px] has-[[data-state=checked]]:ring-2 has-[[data-state=checked]]:ring-green-600 has-[:focus-visible]:ring-2"
+                           style="background-color:@($" hsl({color?.Hue}, {color?.Saturation * 100}%, {color?.Lightness * 100}%)")">
+                        <RadioGroupItem Value="@color?.Label"
+                                        Visibility="false"
+                                        Id="@color?.Id" />
+                    </label>
+                }
+            </div>
+        }
+
+    </RadioGroup>
+
+   Selected color - @selectedOption
+</div>
+
+@code {
+    private List<Color>? _colors { get; set; } = new();
+    private string selectedOption;
+
+    protected override void OnInitialized()
+    {
+        _colors = new List<Color>
+    {
+        new Color(0, 1.0, 0.5, "1", "Red"),
+        new Color(30, 1.0, 0.5, "2", "Orange"),
+        new Color(60, 1.0, 0.5, "3", "Yellow"),
+        new Color(120, 1.0, 0.5, "4", "Green"),
+        new Color(180, 1.0, 0.5, "5", "Cyan"),
+        new Color(240, 1.0, 0.5, "6", "Blue"),
+        new Color(270, 1.0, 0.5, "7", "Purple"),
+        new Color(300, 1.0, 0.5, "8", "Magenta"),
+        new Color(330, 1.0, 0.5, "9", "Pink"),
+        new Color(0, 0.0, 1.0, "10", "White"),
+        new Color(0, 0.0, 0.0, "11", "Black"),
+        new Color(0, 0.0, 0.5, "12", "Gray"),
+        new Color(210, 1.0, 0.75, "13", "Light Blue"),
+        new Color(120, 0.5, 0.75, "14", "Light Green"),
+        new Color(60, 1.0, 0.9, "15", "Light Yellow"),
+        new Color(30, 1.0, 0.7, "16", "Peach")
+    };
+    }
+
+    public class Color
+    {
+        public int Hue { get; set; }          // Range: 0 - 360 degrees
+        public double Saturation { get; set; } // Range: 0.0 - 1.0 (as a percentage)
+        public double Lightness { get; set; }  // Range: 0.0 - 1.0 (as a percentage)
+        public string Id { get; set; }
+        public string Label { get; set; }      // The color name
+
+        // Constructor to initialize with HSL values, Id, and Label
+        public Color(int hue, double saturation, double lightness, string id, string label)
+        {
+            Hue = hue;
+            Saturation = saturation;
+            Lightness = lightness;
+            Id = id;
+            Label = label;
+        }
+    }
+
+}

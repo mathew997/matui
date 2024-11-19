@@ -1,0 +1,32 @@
+﻿
+<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Checkbox With Custom Label - II</h3>
+
+    <div class="grid gap-3">
+        <label for="cb-c" class="relative flex h-fit flex-row-reverse items-start gap-2 rounded-md border p-4 has-[[data-state=checked]]:border-blue-400 has-[[data-state=checked]]:bg-blue-50">
+            <Checkbox IsChecked="true" Id="cb-c" Class="ring-blue-600 data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white" />
+
+            <div class="grid grow gap-2">
+                <Label For="cb-c">Suggested route</Label>
+                <p class="text-xs text-slate-500">
+                    You can use this card with a label and a description.
+                </p>
+            </div>
+        </label>
+
+        <label for="cb-c2" class="relative flex h-fit flex-row-reverse items-start gap-2 rounded-md border p-4 has-[[data-state=checked]]:border-blue-400 has-[[data-state=checked]]:bg-blue-50">
+            <Checkbox IsChecked="false" Id="cb-c2" Class="ring-blue-600 data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white" />
+
+            <div class="grid grow gap-2">
+                <Label For="cb-c2">Alternative route</Label>
+                <p class="text-xs text-slate-500">
+                    You can use this card with a label and a description.
+                </p>
+            </div>
+        </label>
+    </div>
+</div>
+
+@code {
+
+}

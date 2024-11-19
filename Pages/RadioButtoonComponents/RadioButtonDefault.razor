@@ -1,0 +1,26 @@
+﻿<div class="gap-5 grid">
+    <h3 class="text-zinc-500 font-semibold">Radio Default</h3>
+
+    <RadioGroup @bind-Value="selectedOption"
+                DefaultValue="option1"
+                Name="rbg-1"
+                Class="gap-3 grid h-fit">
+        @if (Options?.Count > 0)
+        {
+            @foreach (var input in Options)
+            {
+                <div class="gap-2 flex items-center">
+                    <RadioGroupItem Value="@input?.Id"
+                                    Id="@input?.Id" />
+                    <Label For="@input?.Id">@input?.Value</Label>
+                </div>
+            }
+        }
+
+    </RadioGroup>
+</div>
+
+@code {
+    [Parameter] public List<Input>? Options { get; set; }
+    private string selectedOption;
+}

@@ -1,0 +1,27 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Radio Customized color</h3>
+
+    <RadioGroup @bind-Value="selectedOption"
+                DefaultValue="option1"
+                Name="rbg-2"
+                Class="grid gap-3">
+        @if (Options?.Count > 0)
+        {
+            @foreach (var input in Options)
+            {
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem Value="@input?.Id"
+                                    Id="@input?.Id"
+                                    Class="ring-fuchsia-600 data-[state=checked]:after:bg-fuchsia-600" />
+                    <Label For="@input?.Id">@input?.Value</Label>
+                </div>
+            }
+        }
+
+    </RadioGroup>
+</div>
+
+@code {
+    [Parameter] public List<Input>? Options { get; set; }
+    private string selectedOption;
+}

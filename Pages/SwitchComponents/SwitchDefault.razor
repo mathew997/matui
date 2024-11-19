@@ -1,0 +1,12 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Switch - Small</h3>
+
+    <div class="flex items-center gap-2.5">
+        <Switch Size="SwitchSize.Small"
+                @bind-IsActive="_isChecked" />
+    </div>
+</div>
+
+@code {
+    private bool _isChecked = true;
+}

@@ -1,0 +1,31 @@
+﻿@if (ChildContent is not null)
+{
+    <label class="@Class"
+           for="@For">@ChildContent</label>
+}
+
+@code {
+    /// <summary>
+    /// Represents a reusable label component that associates a label with an input element.
+    /// This component is designed to enhance accessibility by linking the label to a specific input field.
+    /// </summary>
+
+    /// <summary>
+    /// Gets or sets the unique identifier for the label.
+    /// The <c>For</c> property associates the label with an input element by matching this identifier with the <c>id</c> of the corresponding input.
+    /// This ensures that clicking the label will focus or activate the associated input element.
+    /// </summary>
+    [Parameter] public string? For { get; set; }
+
+    /// <summary>
+    /// Gets or sets the label text or content displayed inside the label element.
+    /// This property accepts a <see cref="RenderFragment"/>, allowing for more complex content, including HTML elements or components.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets additional CSS classes to apply to the label element.
+    /// This allows for custom styling beyond the default styles, enabling developers to adapt the label's appearance to match their design requirements.
+    /// </summary>
+    [Parameter] public string? Class { get; set; } = "text-sm font-medium leading-none peer-[:disabled]:cursor-not-allowed peer-[:disabled]:opacity-70";
+}

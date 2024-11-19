@@ -1,0 +1,14 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Switch with Label</h3>
+
+    <div class="group flex items-center gap-2.5" data-state=@(_isChecked ? "checked" : "unchecked" )>
+        <Label Class="group-data-[state=unchecked]:text-black text-sm text-gray-400">Off</Label>
+        <Switch Size="SwitchSize.Large"
+                @bind-IsActive="_isChecked" />
+        <Label Class="group-data-[state=checked]:text-black text-sm text-gray-400">On</Label>
+    </div>
+</div>
+
+@code {
+    private bool _isChecked = true;
+}

@@ -1,0 +1,13 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Customized Color</h3>
+
+    <div class="flex items-center gap-2.5">
+        <Checkbox @bind-IsChecked="_isChecked" Id="cb-2" 
+        Class="ring-teal-600 data-[state=checked]:border-teal-600 data-[state=checked]:bg-teal-600 data-[state=checked]:text-white" />
+        <Label For="cb-2">Colored checkbox</Label>
+    </div>
+</div>
+
+@code {
+    private bool _isChecked = true;
+}

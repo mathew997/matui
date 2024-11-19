@@ -1,0 +1,18 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Switch with Icons</h3>
+
+    <div class="group flex items-center gap-2.5" data-state=@(_isChecked ? "checked" : "unchecked" )>
+        <span class="group-data-[state=unchecked]:text-black text-sm text-gray-400">
+            <SunIcon />
+        </span>
+        <Switch Size="SwitchSize.Medium"
+                @bind-IsActive="_isChecked" />
+        <span class="group-data-[state=checked]:text-black text-sm text-gray-400">
+            <MoonIcon />
+        </span>
+    </div>
+</div>
+
+@code {
+    private bool _isChecked = true;
+}

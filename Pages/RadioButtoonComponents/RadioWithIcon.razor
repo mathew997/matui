@@ -1,0 +1,59 @@
+﻿<div class="grid gap-5">
+    <h3 class="font-semibold text-zinc-500">Radio With Custom Icon</h3>
+
+    <RadioGroup @bind-Value="selectedOption"
+                DefaultValue="option-ci01"
+                Name="rbg-7"
+                Class="flex h-fit gap-3 *:flex-1 *:cursor-pointer">
+
+        <label for="ci-01" class="ring-offset-2 rounded-md border px-3 py-4 has-[[data-state=checked]]:bg-gray-100 has-[[data-state=checked]]:border-gray-300 has-[:focus-visible]:ring-2">
+            <div class="grid place-items-center gap-2.5">
+                <span class="">
+                    <CreditcardIcon />
+                </span>
+
+                <span class="text-sm">
+                    Credit card
+                </span>
+                <RadioGroupItem Value="option-ci01"
+                                Visibility="false"
+                                Id="ci-01" />
+            </div>
+        </label>
+
+        <label for="ci-02" class="ring-offset-2 rounded-md border px-3 py-4 has-[[data-state=checked]]:bg-gray-100 has-[[data-state=checked]]:border-gray-300 has-[:focus-visible]:ring-2">
+            <div class="grid place-items-center gap-2.5">
+                <span class="">
+                    <WalletIcon />
+                </span>
+
+                <span class="text-sm">
+                    Wallet
+                </span>
+                <RadioGroupItem Value="option-ci02"
+                                Visibility="false"
+                                Id="ci-02" />
+            </div>
+        </label>
+
+        <label for="ci-03" class="ring-offset-2 rounded-md border px-3 py-4 has-[[data-state=checked]]:bg-gray-100 has-[[data-state=checked]]:border-gray-300 has-[:focus-visible]:ring-2">
+            <div class="grid place-items-center gap-2.5">
+                <span class="">
+                    <HandCoinsIcon />
+                </span>
+
+                <span class="text-sm">
+                    Cash
+                </span>
+                <RadioGroupItem Value="option-ci03"
+                                Visibility="false"
+                                Id="ci-03" />
+            </div>
+        </label>
+
+    </RadioGroup>
+</div>
+
+@code {
+    private string selectedOption;
+}

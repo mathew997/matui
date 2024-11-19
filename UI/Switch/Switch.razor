@@ -1,0 +1,97 @@
+﻿
+<button type="button" @onclick="ToggleSwitch" disabled="@Disabled"
+        style="@GetSwitchStyle()"
+        data-state="@(IsActive ? "checked" : "unchecked")"
+        class="w-[--width] h-[--height] bg-slate-200 peer flex-none
+rounded-full p-[2px] ring-offset-2
+focus:outline-none focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 @Class">
+    <span class="size-[--size] bg-white block rounded-full transition-all duration-300 ease-in-out @(GetTranslateClass())"
+          style="@GetIndicatorStyle()"></span>
+</button>
+
+@code {
+    /// <summary>
+    /// Indicates whether the switch is currently active or not.
+    /// When true, the switch is in the "on" state, moving the indicator to an active position.
+    /// Default is false, meaning the switch starts in the "off" state.
+    /// </summary>
+    [Parameter] public bool IsActive { get; set; } = false;
+
+    /// <summary>
+    /// Disables the switch when true. In this state, the switch will not respond to user interactions.
+    /// Default is false, meaning the switch is enabled.
+    /// </summary>
+    [Parameter] public bool Disabled { get; set; } = false;
+
+    /// <summary>
+    /// Event callback invoked when the switch's active state changes.
+    /// Useful for notifying a parent component of the state change.
+    /// </summary>
+    [Parameter] public EventCallback<bool> IsActiveChanged { get; set; }
+
+    /// <summary>
+    /// Size of the switch, which adjusts its dimensions and appearance.
+    /// Default is Medium. Supported values are Small, Medium, and Large.
+    /// </summary>
+    [Parameter] public SwitchSize Size { get; set; } = SwitchSize.Medium;
+
+    /// <summary>
+    /// Color of the active state of the switch.
+    /// This parameter accepts CSS classes to define the appearance.
+    /// Example: "data-[state=checked]:bg-black".
+    /// Default is black.
+    /// </summary>
+    [Parameter] public string? Class { get; set; } = "data-[state=checked]:bg-black";
+
+    /// <summary>
+    /// Handles the toggle action of the switch.
+    /// Updates the IsActive state only if the switch is enabled, and triggers the IsActiveChanged callback.
+    /// </summary>
+    private async Task ToggleSwitch()
+    {
+        if (!Disabled)
+        {
+            IsActive = !IsActive;
+            await IsActiveChanged.InvokeAsync(IsActive);
+        }
+    }
+
+    /// <summary>
+    /// Determines the width and height of the switch based on the specified Size parameter.
+    /// Sets CSS variables for styling width and height directly in the button's style.
+    /// </summary>
+    /// <returns>CSS variable string representing the width and height for the switch.</returns>
+    private string GetSwitchStyle() => Size switch
+    {
+        SwitchSize.Small => "--width: 24px; --height: 16px;",
+        SwitchSize.Medium => "--width: 32px; --height: 20px;",
+        SwitchSize.Large => "--width: 40px; --height: 24px;",
+        _ => "--width: 32px; --height: 20px;"
+    };
+
+    /// <summary>
+    /// Determines the size of the switch indicator based on the specified Size parameter.
+    /// Sets a CSS variable for the indicator's diameter, affecting its appearance within the switch.
+    /// </summary>
+    /// <returns>CSS variable string representing the size of the switch's indicator.</returns>
+    private string GetIndicatorStyle() => Size switch
+    {
+        SwitchSize.Small => "--size: 12px;",
+        SwitchSize.Medium => "--size: 16px;",
+        SwitchSize.Large => "--size: 20px;",
+        _ => "--size: 16px;"
+    };
+
+    /// <summary>
+    /// Returns the CSS class for the translation distance of the indicator, based on the switch size and active state.
+    /// Moves the indicator within the switch button to visually represent the "on" or "off" state.
+    /// </summary>
+    /// <returns>CSS class for translating the indicator when active.</returns>
+    private string GetTranslateClass() => Size switch
+    {
+        SwitchSize.Small when IsActive => "translate-x-2",
+        SwitchSize.Medium when IsActive => "translate-x-3",
+        SwitchSize.Large when IsActive => "translate-x-4",
+        _ => "translate-x-0" // Default for inactive state
+    };
+}

@@ -1,0 +1,57 @@
+﻿<input type="radio"
+class="ring-offset-2 peer cursor-pointer appearance-none rounded-3xl
+shadow-[0_0_0_1px_#d4d4d8] transition-colors duration-300
+ease-in-out after:-translate-x-1/2 after:-translate-y-1/2 after:left-1/2 after:top-1/2 focus-visible:ring-2
+focus-visible:outline-none disabled:cursor-not-allowed
+disabled:opacity-50 @(Visibility ? "relative" : "sr-only") @Class"
+id="@Id"
+name="@ParentGroup?.Name"
+data-state="@(Value == ParentGroup?.Value ? "checked" : "unchecked")"
+value="@Value"
+disabled="@Disabled"
+checked="@(Value == ParentGroup?.Value)"
+@onchange="@(() => ParentGroup!.SelectValue(Value))" />
+@code {
+    /// <summary>
+    /// Represents a reusable, stateless radio button component that can be used within a <see cref="RadioGroup"/>.
+    /// The component uses parameters to control its appearance, state, and functionality, making it adaptable and reusable.
+    /// </summary>
+
+    /// <summary>
+    /// Gets or sets the parent <see cref="RadioGroup"/> component.
+    /// This enables the radio button to interact with the parent group,
+    /// allowing grouped behavior, such as only one radio button being selected at a time.
+    /// </summary>
+    [CascadingParameter] public RadioGroup? ParentGroup { get; set; }
+
+    /// <summary>
+    /// Gets or sets the value associated with this radio button.
+    /// This value is used to determine whether the radio button is selected within the <see cref="RadioGroup"/>.
+    /// </summary>
+    [Parameter] public string? Value { get; set; }
+
+    /// <summary>
+    /// Gets or sets the unique identifier for the radio button.
+    /// This is used as the <c>id</c> attribute on the input element, which makes it accessible for labels and testing.
+    /// </summary>
+    [Parameter] public string? Id { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the radio button is disabled.
+    /// When <c>true</c>, the radio button is not interactive, which can be useful for conditions where
+    /// the selection is restricted or unavailable.
+    /// </summary>
+    [Parameter] public bool Disabled { get; set; }
+
+    /// <summary>
+    /// Gets or sets additional CSS classes to apply to the radio button element.
+    /// This allows for custom styling beyond the default styles provided in the component.
+    /// </summary>
+    [Parameter] public string? Class { get; set; } = "ring-black data-[state=checked]:after:bg-black";
+
+    /// <summary>
+    /// Determines whether the radio button is visible.
+    /// When <c>true</c>, the radio button is visible. When <c>false</c>, it is visually hidden but still accessible.
+    /// </summary>
+    [Parameter] public bool Visibility { get; set; } = true;
+}

@@ -1,0 +1,14 @@
+﻿input {
+    --size: 1rem;
+    height: var(--size);
+    width: var(--size);
+    aspect-ratio: 1;
+}
+
+    input[data-state="checked"]::after {
+        content: '';
+        position: absolute;
+        width: calc(var(--size) - 0.375rem);
+        height: calc(var(--size) - 0.375rem);
+        border-radius: 50%;
+    }
